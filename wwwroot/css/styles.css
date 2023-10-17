@@ -1,0 +1,282 @@
+:root {
+	--purple: #8da6ff;
+	--body: #e2e6e9;
+	--white: #ffffff;
+	--itembg: #f7f7f7;
+	--orange: #ffd27d;
+}
+
+@font-face {
+	font-family: 'Poppins';
+	src: url('/font/Poppins/Poppins-Regular.ttf') format('truetype');
+}
+
+* {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins';
+}
+
+body {
+	background-color: var(--body);
+}
+
+.header {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: var(--white);
+	padding: 10px 0;
+	border-radius: 12px 12px 0 0;
+	position: sticky;
+	top: 0;
+	z-index: 20;
+}
+
+.header::after {
+	content: '';
+	position: absolute;
+	bottom: -6px;
+	width: 100%;
+	height: 6px;
+	background: linear-gradient(to bottom, var(--body), transparent);
+}
+
+.header-logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.header-logo h3 {
+	margin: 0;
+}
+
+.header-ul {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.header-ul li a {
+	font-weight: bold;
+	transition: all 0.2s ease;
+	padding: 5px 10px;
+	text-decoration: none;
+	border-radius: 12px;
+	color: var(--purple);
+}
+
+.header-ul li a:hover {
+	background-color: var(--purple);
+	color: var(--background-body);
+}
+
+.header-settings {
+	margin: 0;
+}
+
+.notes-section-container {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--white);
+	padding: 10px 40px;
+	padding-bottom: 30px;
+	border-radius: 12px;
+}
+
+.notes-s-container-count {
+	color: var(--purple);
+	margin-bottom: 20px;
+}
+
+.notes-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.note-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 15px;
+	max-height: 200px;
+	background-color: var(--itembg);
+	border-radius: 12px;
+	padding: 10px;
+	cursor: pointer;
+	transition: background-color 0.1s ease;
+}
+
+.note-item:hover {
+	background-color: var(--body);
+}
+
+.note-item-state-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	border-radius: 50%;
+}
+
+.note-item-state-container img {
+	width: 35px;
+	height: 35px;
+}
+
+.note-item-state-container.pending {
+	background-color: #f9e5cb;
+}
+
+.note-item-state-container.complete {
+	background-color: #aed4c6;
+}
+
+.note-item-state-container.progress {
+	background-color: #bfcbf8;
+}
+
+.note-item-info {
+	justify-self: start;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+	gap: 10px;
+	min-height: 100px;
+	max-height: 100px;
+}
+
+.note-item-title {
+	font-size: 1.25rem;
+	margin: 0;
+}
+
+.note-item-description {
+	font-size: 0.9rem;
+	max-width: 350px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.note-item-tag {
+	background-color: var(--body);
+	padding: 2px 7px;
+	border-radius: 12px;
+	cursor: default;
+}
+
+.note-item:hover .note-item-tag {
+	background-color: var(--itembg);
+}
+
+.note-item-actions {
+	display: flex;
+	position: relative;
+	gap: 10px;
+	height: 100%;
+}
+
+.note-item-actions span {
+	position: absolute;
+	width: 100%;
+	text-align: end;
+	top: -25px;
+	font-size: 0.8rem;
+}
+
+#statusCreate {
+	color: #8da6ff;
+}
+
+.note-item-action {
+	border-radius: 50%;
+	padding: 12px 20px;
+}
+
+.note-item-action.edit {
+	background-color: var(--orange);
+	color: var(--white);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 22px;
+	text-decoration: none;
+}
+
+.note-item-action.delete {
+	background-color: #ff7084;
+	color: var(--white);
+}
+
+/* form note */
+
+.note-form-container {
+	max-width: 500px;
+	margin: 0 auto;
+	background-color: var(--white);
+	margin-top: 30px;
+	border-radius: 12px;
+	padding: 0px 40px 40px 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.note-form-title {
+	text-align: start;
+	padding: 20px 0;
+	border-bottom: 3px solid var(--purple);
+}
+
+.note-form-container > form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.note-form-container > form input {
+	width: 100%;
+}
+
+.note-form-field {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding-bottom: 15px;
+}
+
+.note-form-field-error {
+	color: #ff7084;
+	font-size: 0.85rem;
+	position: absolute;
+	bottom: 0;
+}
+
+.note-form-container > form .note-form-selects {
+	display: flex;
+	justify-content: space-around;
+	gap: 15px;
+}
+
+.note-form-selects-field {
+	flex-grow: 1;
+}
+
+.note-form-selects-field > * {
+	width: 100%;
+}
+
+.note-form-container > form button {
+	background-color: var(--orange);
+}

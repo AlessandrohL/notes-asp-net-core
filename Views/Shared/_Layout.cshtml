@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notas</title>
+    <link rel="stylesheet" href="~/css/water.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <img src="~/favicon.ico" alt="Note icon">
+            <h3>Notas</h3>
+        </div>
+        <ul class="header-ul">
+            <li>
+                <a asp-controller="Note" asp-action="Index">Todos</a>
+            </li>
+            <li>
+                <a asp-controller="Note" asp-action="Create">Añadir</a>
+            </li>
+        </ul>
+        <button class="header-settings">
+            Settings
+        </button>
+    </header>
+    <div class="main-container">
+        <main role="main" class="">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            &copy; 2023 - Todo app -
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/sweetalert/sweetalert2@11.js"></script>
+    <script src="~/js/site.js" asp-append-version="true" type="module"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

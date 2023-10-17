@@ -1,0 +1,62 @@
+@using Todo_app.Models.ViewModels
+@model NoteViewModel
+@{
+  string createAction = "Create";
+  string updateAction = "Update";
+
+  string action = Model.Id != null ? updateAction : createAction;
+}
+
+<section class="note-form-container">
+  <h3 class="note-form-title">Añadir nota</h3>
+  <form asp-action="@action" asp-controller="Note" method="POST">
+
+    @if (Model.Id != null)
+    {
+      <input type="hidden" asp-for="Id" />
+    }
+
+    <div class="note-form-field">
+      <label asp-for="Title">Título</label>
+      <input asp-for="Title" type="text">
+      <span asp-validation-for="Title" class="note-form-field-error"></span>
+    </div>
+
+    <div class="note-form-field">
+      <label asp-for="Description">Descripción</label>
+      <textarea asp-for="Description"></textarea>
+      <span asp-validation-for="Description" class="note-form-field-error"></span>
+    </div>
+
+    <div class="note-form-field">
+      <label asp-for="ExpirationDate">Fecha de Expiración</label>
+      <input type="datetime-local" asp-for="ExpirationDate">
+      <span asp-validation-for="ExpirationDate" class="note-form-field-error"></span>
+    </div>
+
+    <section class="note-form-selects">
+      <div class="note-form-selects-field">
+        <label asp-for="PriorityId">Prioridad</label>
+        <select asp-for="PriorityId" asp-items="@ViewBag.Priorities">
+        </select>
+        <span asp-validation-for="PriorityId" class="note-form-field-error"></span>
+      </div>
+
+      <div class="note-form-selects-field">
+        <label asp-for="StateId">Estado</label>
+        <select asp-for="StateId" asp-items="@ViewBag.States">
+        </select>
+        <span asp-validation-for="StateId" class="note-form-field-error"></span>
+      </div>
+    </section>
+
+    <div class="note-form-field">
+      <label asp-for="TagsIds">Etiquetas</label>
+      <select asp-for="TagsIds" asp-items="@ViewBag.Tags" multiple>
+      </select>
+      <span asp-validation-for="TagsIds" class="note-form-field-error"></span>
+    </div>
+
+    <button type="submit">Send</button>
+  </form>
+</section>

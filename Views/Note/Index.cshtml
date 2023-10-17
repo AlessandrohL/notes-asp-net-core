@@ -1,0 +1,68 @@
+﻿@using Humanizer
+@using Todo_app.Models.Entities
+@model List<Note>
+@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.NotesTitle = "Mis notas";
+
+    ViewData["1"] = "pending";
+    ViewData["2"] = "progress";
+    ViewData["3"] = "complete";
+    ViewBag.StatusNote = TempData["statusNote"];
+}
+
+<section class="notes-section-container">
+    @if (ViewBag.StatusNote != null)
+    {
+        <h3 id="statusNote">@ViewBag.StatusNote</h3>
+    }
+    <h2 class="notes-s-container-title">@ViewBag.NotesTitle</h2>
+    <span class="notes-s-container-count">@Model.Count Notes</span>
+    <article class="notes-container">
+        @if (Model.Count == 0)
+        {
+            <h4>Tu lista de notas está vacía</h4>
+        }
+        else
+        {
+            foreach (var note in Model)
+            {
+                <figure class="note-item" data-item-id="@note.Id">
+                    <div class="note-item-state-container @ViewData[note.StateId.ToString()]">
+                        @if (note.StateId == 1)
+                        {
+                            <img src="~/src/ellipsis-solid.svg" alt="Pendiente" />
+                        }
+                        @if (note.StateId == 2)
+                        {
+                            <img src="~/src/spinner-solid.svg" alt="En progreso" />
+                        }
+                        @if (note.StateId == 3)
+                        {
+                            <img src="~/src/check-solid.svg" alt="Completado" />
+                        }
+                    </div>
+                    <div class="note-item-info" data-item-id="@note.Id">
+                        <h2 class="note-item-title" data-item-id="@note.Id">@note.Title</h2>
+                        <p class="note-item-description" data-item-id="@note.Id">@note.Description</p>
+                        <div class="note-item-tags">
+                            @foreach (var nt in note.NoteTags)
+                            {
+                                <span class="note-item-tag">@nt.Tag.Name</span>
+                            }
+                        </div>
+
+                    </div>
+                    <div class="note-item-actions">
+                        <span>@note.DateCreated.Humanize()</span>
+                        <a asp-controller="Note" asp-action="Edit" asp-route-id="@note.Id"
+                            class="note-item-action edit">E</a>
+                        <form asp-action="Delete" asp-route-id="@note.Id" method="POST">
+                            <button type="submit" class="note-item-action delete">X</button>
+                        </form>
+                    </div>
+                </figure>
+            }
+        }
+    </article>
+</section>
