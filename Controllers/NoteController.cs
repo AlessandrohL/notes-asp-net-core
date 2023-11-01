@@ -6,6 +6,7 @@ using Todo_app.Models.Entities;
 using Todo_app.Models.ViewModels;
 using Todo_app.Services.Contracts;
 using Todo_app.Services;
+using System.Text.Encodings.Web;
 
 namespace Todo_app.Controllers;
 
@@ -130,7 +131,6 @@ public class NoteController : Controller
         return RedirectToAction("Index");
     }
 
-    // [HttpGet("Note/Detail/{id}")]
     public async Task<IActionResult> Detail(Guid id)
     {
         Note note = await _noteService.FindNoteById(id, true);

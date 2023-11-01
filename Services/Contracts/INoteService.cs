@@ -7,7 +7,7 @@ namespace Todo_app.Services.Contracts
   {
     Task<List<Note>> GetAllNotes();
     Task<bool> CreateNote(NoteViewModel model);
-    Task<bool> DeleteNote(Guid id);
+    Task<bool> DeleteNote(Guid? id);
     Task<Note> FindNoteById(Guid id, bool includeProps);
     Task<bool> UpdateNote(NoteViewModel model);
   }

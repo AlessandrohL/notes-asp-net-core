@@ -5,9 +5,6 @@
     ViewData["Title"] = "Home Page";
     ViewBag.NotesTitle = "Mis notas";
 
-    ViewData["1"] = "pending";
-    ViewData["2"] = "progress";
-    ViewData["3"] = "complete";
     ViewBag.StatusNote = TempData["statusNote"];
 }
 
@@ -28,19 +25,8 @@
             foreach (var note in Model)
             {
                 <figure class="note-item" data-item-id="@note.Id">
-                    <div class="note-item-state-container @ViewData[note.StateId.ToString()]">
-                        @if (note.StateId == 1)
-                        {
-                            <img src="~/src/ellipsis-solid.svg" alt="Pendiente" />
-                        }
-                        @if (note.StateId == 2)
-                        {
-                            <img src="~/src/spinner-solid.svg" alt="En progreso" />
-                        }
-                        @if (note.StateId == 3)
-                        {
-                            <img src="~/src/check-solid.svg" alt="Completado" />
-                        }
+                    <div class="note-item-state-container @note.State.Name.ToLower()">
+                        <img src="~/src/@(note.State.Name.ToLower()).svg" alt="@note.State.Name" />
                     </div>
                     <div class="note-item-info" data-item-id="@note.Id">
                         <h2 class="note-item-title" data-item-id="@note.Id">@note.Title</h2>
